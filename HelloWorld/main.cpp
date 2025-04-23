@@ -271,6 +271,22 @@ bool lexiGreater(const std::string& sX, const std::string& sY)
     return true;
 }
 
+namespace geometry
+{
+    struct Circle2D
+    {
+        double x{ 0.0 };
+        double y{ 0.0 };
+        double rad{ 1.0 };
+    };
+
+    std::ostream& operator<<(std::ostream& os, const Circle2D& circle)
+    {
+        os << "Circle2D(x[" << circle.x << "], y[" << circle.y << "], rad[" << circle.rad << "])";
+        return os;
+    }
+}
+
 int main()
 {
     std::cout << "string manip" << std::endl;
@@ -736,4 +752,29 @@ int main()
     }
     std::cout << std::endl;
 
+    std::cout << "designated initializers" << std::endl;
+    // only work with aggregate types in c++20
+    // a class is an aggregate if:
+    // - has no user-declared constructors
+    // no private or protected non-static data members
+    // no base classes or virtual functions
+    {
+        // default initialization
+        geometry::Circle2D c1;
+        std::cout << "default initialized: " << c1 << std::endl;
+        
+        // c++20 designated initializer
+        geometry::Circle2D c2{ .x = 5.0, .y = 3.5, .rad = 2.0 };
+        std::cout << "designated initialized: " << c2 << std::endl;
+
+        // only update some values
+        geometry::Circle2D c3{ .y = 4.2 }; // x and rad will take default values
+        std::cout << "partially designated initialized: " << c3 << std::endl;
+
+        // aggregate initialization using parentheses
+        geometry::Circle2D c4(1.1, 2.2, 3.3);
+        std::cout << "constructor initialized: " << c4 << std::endl;
+    }
+
+    return 0;
 }
