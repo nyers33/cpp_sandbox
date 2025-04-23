@@ -9,6 +9,12 @@
 ## SimplyLinkedList
 * insertion, deletion, iterative and recursive reversal, various sorting algorithms, and merging two linked lists in multiple ways
 
+## LambdasTemplateSyntax
+* generic lambdas with template parameters
+* type constraints with concepts
+* multiple template parameters
+* template lambdas can be specialized and passed into fixed-type std::function wrappers (MSVC currently has limitations)
+
 ### *Instructions for Windows*
 ```
 # Boost - in main workspace root
@@ -33,6 +39,6 @@ cmake --build . --config Debug
 ```
 # project - in main workspace root
 cd cpp_sandbox && mkdir build && cd build
-cmake .. -G"Visual Studio 17 2022" -DBOOST_ROOT=C:/Boost
-cmake --build . --config Release
+cmake .. -G"Visual Studio 17 2022" -DBOOST_ROOT=C:/Boost -A x64 -T host=x64
+cmake --build . --config Release --verbose
 ```
