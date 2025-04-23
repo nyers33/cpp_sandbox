@@ -773,7 +773,7 @@ int main()
 
         // aggregate initialization using parentheses
         geometry::Circle2D c4(1.1, 2.2, 3.3);
-        std::cout << "constructor initialized: " << c4 << std::endl;
+        std::cout << "aggregate initialization using parentheses: " << c4 << std::endl;
     }
 
     return 0;
